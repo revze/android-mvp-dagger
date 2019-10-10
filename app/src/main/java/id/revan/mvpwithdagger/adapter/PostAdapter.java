@@ -1,0 +1,51 @@
+package id.revan.mvpwithdagger.adapter;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+
+import id.revan.mvpwithdagger.R;
+import id.revan.mvpwithdagger.model.Post;
+
+public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
+    private List<Post> posts;
+
+    public PostAdapter(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    @NonNull
+    @Override
+    public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new PostViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_post, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
+        Post post = posts.get(position);
+        holder.tvTitle.setText(post.getTitle());
+        holder.tvBody.setText(post.getBody());
+    }
+
+    @Override
+    public int getItemCount() {
+        return posts.size();
+    }
+
+    class PostViewHolder extends RecyclerView.ViewHolder {
+        TextView tvTitle;
+        TextView tvBody;
+
+        PostViewHolder(View itemView) {
+            super(itemView);
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvBody = itemView.findViewById(R.id.tv_body);
+        }
+    }
+}
