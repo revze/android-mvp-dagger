@@ -1,5 +1,7 @@
 package id.revan.mvpwithdagger.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import java.util.List;
 
 import id.revan.mvpwithdagger.R;
 import id.revan.mvpwithdagger.model.Post;
+import id.revan.mvpwithdagger.ui.postdetail.PostDetailActivity;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
     private List<Post> posts;
@@ -27,10 +30,20 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
-        Post post = posts.get(position);
+    public void onBindViewHolder(@NonNull final PostViewHolder holder, int position) {
+        final Post post = posts.get(position);
+        final Context context = holder.itemView.getContext();
+
         holder.tvTitle.setText(post.getTitle());
         holder.tvBody.setText(post.getBody());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent postDetailIntent = new Intent(context, PostDetailActivity.class);
+                postDetailIntent.putExtra(PostDetailActivity.ID, post.getId());
+                context.startActivity(postDetailIntent);
+            }
+        });
     }
 
     @Override

@@ -13,14 +13,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import id.revan.mvpwithdagger.App;
 import id.revan.mvpwithdagger.R;
 import id.revan.mvpwithdagger.adapter.PostAdapter;
 import id.revan.mvpwithdagger.api.ApiInterface;
-import id.revan.mvpwithdagger.di.AppComponent;
-import id.revan.mvpwithdagger.di.DaggerAppComponent;
 import id.revan.mvpwithdagger.di.Injector;
-import id.revan.mvpwithdagger.di.UIModule;
 import id.revan.mvpwithdagger.helper.LayoutHelper;
 import id.revan.mvpwithdagger.model.Post;
 
